@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+    
+    <bean id="basicMessageOfDay" class="com.jvosantos.examples.services.BasicMessageOfTheDay">
+        <property name="message" value="Hello World of configuration!"/>
+    </bean>
+
+    <bean id="printer" class="com.jvosantos.examples.services.MessagePrinter">
+        <!-- inject service by name of parameter -->
+        <constructor-arg name="service" ref="basicMessageOfDay"/>
+        <!-- inject separator by position of parameter -->
+        <constructor-arg index="1" value=": "/>
+        <!-- inject name of service by default -->
+        <constructor-arg value="Printer Service"/>
+    </bean>
+
+</beans>
+
+
