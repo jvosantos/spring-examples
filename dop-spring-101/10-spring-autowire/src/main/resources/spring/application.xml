@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <!-- abstract parent class -->
+    <bean id="abstractStampedMessageOfDay" class="com.jvosantos.examples.services.AbstractStampedMessageOfTheDay" abstract="true"
+          p:message="Abstract Hello World!"/>
+
+    <!-- id is service so that autowire byName resolves to this bean, since the property on bean MessagePrinter is service -->
+    <bean id="service" parent="abstractStampedMessageOfDay" class="com.jvosantos.examples.services.NoneStampedMessageOfTheDay"
+          p:message="None Stamped Hello World!"/>
+    <!-- another child of abstractStampedMessageOfDay -->
+    <bean id="timeStampedMessageOfDay" parent="abstractStampedMessageOfDay" class="com.jvosantos.examples.services.TimeStampedMessageOfTheDay"
+          p:message="Stamped Hello World!"/>
+
+    <!-- Printer services -->
+    <!-- autowiring byName will resolve to any bean that has an id equals to the property name -->
+    <!-- autowiring byType will resolve to the only bean that matches the required type. Having two beans with the type of MessageOfTheDayService, byType will fail -->
+    <!-- autowiring constructor will resolve the same way as byType. If the constructor requires a collection and multiple beans of that type exist, spring will create a collection with all beans of that type configured. -->
+    <bean id="printer" class="com.jvosantos.examples.services.MessagePrinter" scope="singleton"
+          p:name="Printer Servicer" p:separator=": " autowire="byName"/>
+</beans>
