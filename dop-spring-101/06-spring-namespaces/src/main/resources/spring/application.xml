@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+    
+    <!-- Message Value Objects -->
+    <bean id="sundayMessage" class="com.jvosantos.examples.models.Message" scope="prototype" c:message="Sunday - crap, tomorrow you gotta work."/>
+    <bean id="mondayMessage" class="com.jvosantos.examples.models.Message" scope="prototype" c:message="Monday - crap!"/>
+    <bean id="tuesdayMessage" class="com.jvosantos.examples.models.Message" scope="prototype" c:message="Tuesday - ..."/>
+    <bean id="wednesdayMessage" class="com.jvosantos.examples.models.Message" scope="prototype" c:message="Wednesday - Middle of the week, don't despair."/>
+    <bean id="thursdayMessage" class="com.jvosantos.examples.models.Message" scope="prototype" c:message="Thursday - Better finish your work today."/>
+    <bean id="fridayMessage" class="com.jvosantos.examples.models.Message" scope="prototype" c:message="Friday - Yay, Drink night"/>
+    <bean id="saturdayMessage" class="com.jvosantos.examples.models.Message" scope="prototype" c:message="Saturday - Try not to stay in the couch all day"/>
+
+    <bean id="basicMessageOfDay" class="com.jvosantos.examples.services.BasicMessageOfTheDay" scope="singleton" p:message="Hello World of configuration!"/>
+    
+    <bean id="dynamicMessageOfDay" class="com.jvosantos.examples.services.DynamicMessageOfTheDay" scope="singleton">
+        <property name="messagesValueList">
+            <list>
+                <ref bean="sundayMessage"/>
+                <ref bean="mondayMessage"/>
+                <ref bean="tuesdayMessage"/>
+                <ref bean="wednesdayMessage"/>
+                <ref bean="tuesdayMessage"/>
+                <ref bean="fridayMessage"/>
+                <ref bean="saturdayMessage"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="printer" class="com.jvosantos.examples.services.MessagePrinter" scope="singleton" p:name="Printer Servicer" p:separator=": " p:service-ref="basicMessageOfDay"/>
+
+</beans>
+
+
