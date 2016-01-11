@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <!-- Message of the day services -->
+    <bean id="basicMessageOfDay" class="com.jvosantos.examples.services.BasicMessageOfTheDay" abstract="true"
+          scope="singleton" p:message="Hello World of configuration!" init-method="init" destroy-method="destroy"/>
+
+    <!-- inheritance using only configuration -->
+    <bean id="basicMessageOfDayChild" parent="basicMessageOfDay" p:message="Child bean Hello!!"/>
+
+    <!-- abstract parent class -->
+    <bean id="abstractStampedMessageOfDay" class="com.jvosantos.examples.services.AbstractStampedMessageOfTheDay" abstract="true"
+          scope="singleton" p:message="Abstract Hello World!" init-method="init" destroy-method="destroy"/>
+
+    <!-- some child of abstractStampedMessageOfDay -->
+    <bean id="noneStampedMessageOfDay" parent="abstractStampedMessageOfDay" class="com.jvosantos.examples.services.NoneStampedMessageOfTheDay"
+          scope="singleton" p:message="None Stamped Hello World!"/>
+    <!-- another child of abstractStampedMessageOfDay -->
+    <bean id="timeStampedMessageOfDay" parent="abstractStampedMessageOfDay" class="com.jvosantos.examples.services.TimeStampedMessageOfTheDay"
+          scope="singleton" p:message="Stamped Hello World!"/>
+
+    <!-- Printer services -->
+    <bean id="printer" class="com.jvosantos.examples.services.MessagePrinter" scope="singleton"
+          p:name="Printer Servicer" p:separator=": " init-method="init" destroy-method="destroy">
+        <property name="service">
+            <bean class="com.jvosantos.examples.services.TimeStampedMessageOfTheDay" p:message="Hello from inner bean!"/>
+        </property>
+    </bean>
+
+</beans>
