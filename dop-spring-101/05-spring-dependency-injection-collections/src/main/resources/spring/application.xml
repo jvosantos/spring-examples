@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+    
+    <bean id="basicMessageOfDay" class="com.jvosantos.examples.services.BasicMessageOfTheDay" scope="singleton">
+        <property name="message" value="Hello World of configuration!"/>
+    </bean>
+
+    <bean id="dynamicMessageOfDay" class="com.jvosantos.examples.services.DynamicMessageOfTheDay" scope="singleton">
+        <property name="messagesArray">
+            <array>
+                <value>"Sunday - crap, tomorrow you gotta work."</value>
+                <value>"Monday - crap!"</value>
+                <value>"Tuesday - ..."</value>
+                <value>"Wednesday - Middle of the week, don't despair."</value>
+                <value>"Thursday - Better finish your work today."</value>
+                <value>"Friday - Yay, Drink night"</value>
+                <value>"Saturday - Try not to stay in the couch all day"</value>
+            </array>
+        </property>
+        <property name="messagesValueArray">
+            <array>
+                <ref bean="sundayMessage"/>
+                <ref bean="mondayMessage"/>
+                <ref bean="tuesdayMessage"/>
+                <ref bean="wednesdayMessage"/>
+                <ref bean="tuesdayMessage"/>
+                <ref bean="fridayMessage"/>
+                <ref bean="saturdayMessage"/>
+            </array>
+        </property>
+        <property name="messagesList">
+            <list>
+                <value>"Sunday - crap, tomorrow you gotta work."</value>
+                <value>"Monday - crap!"</value>
+                <value>"Tuesday - ..."</value>
+                <value>"Wednesday - Middle of the week, don't despair."</value>
+                <value>"Thursday - Better finish your work today."</value>
+                <value>"Friday - Yay, Drink night"</value>
+                <value>"Saturday - Try not to stay in the couch all day"</value>
+            </list>
+        </property>
+        <property name="messagesValueList">
+            <list>
+                <ref bean="sundayMessage"/>
+                <ref bean="mondayMessage"/>
+                <ref bean="tuesdayMessage"/>
+                <ref bean="wednesdayMessage"/>
+                <ref bean="tuesdayMessage"/>
+                <ref bean="fridayMessage"/>
+                <ref bean="saturdayMessage"/>
+            </list>
+        </property>
+        <property name="messagesMap">
+            <map>
+                <entry key="1" value="Sunday - crap, tomorrow you gotta work."/>
+                <entry key="2" value="Monday - crap!"/>
+                <entry key="3" value="Tuesday - ..."/>
+                <entry key="4" value="Wednesday - Middle of the week, don't despair."/>
+                <entry key="5" value="Thursday - Better finish your work today."/>
+                <entry key="6" value="Friday - Yay, Drink night"/>
+                <entry key="7" value="Saturday - Try not to stay in the couch all day"/>
+            </map>
+        </property>
+        <property name="messagesValueMap">
+            <map>
+                <entry key="1" value-ref="sundayMessage"/>
+                <entry key="2" value-ref="mondayMessage"/>
+                <entry key="3" value-ref="tuesdayMessage"/>
+                <entry key="4" value-ref="wednesdayMessage"/>
+                <entry key="5" value-ref="tuesdayMessage"/>
+                <entry key="6" value-ref="fridayMessage"/>
+                <entry key="7" value-ref="saturdayMessage"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="printer" class="com.jvosantos.examples.services.MessagePrinter" scope="singleton">
+        <constructor-arg name="name" value="Printer Service"/>
+        <constructor-arg name="separator" value=": "/>
+        <constructor-arg name="service" ref="dynamicMessageOfDay"/>
+    </bean>
+
+    <!-- MessageValue Value Objects -->
+    <bean id="sundayMessage" class="com.jvosantos.examples.models.MessageValue" scope="prototype">
+        <constructor-arg value="Sunday - crap, tomorrow you gotta work."/>
+    </bean>
+
+    <bean id="mondayMessage" class="com.jvosantos.examples.models.MessageValue" scope="prototype">
+        <constructor-arg value="Monday - crap!"/>
+    </bean>
+    <bean id="tuesdayMessage" class="com.jvosantos.examples.models.MessageValue" scope="prototype">
+        <constructor-arg value="Tuesday - ..."/>
+    </bean>
+    <bean id="wednesdayMessage" class="com.jvosantos.examples.models.MessageValue" scope="prototype">
+        <constructor-arg value="Wednesday - Middle of the week, don't despair."/>
+    </bean>
+    <bean id="thursdayMessage" class="com.jvosantos.examples.models.MessageValue" scope="prototype">
+        <constructor-arg value="Thursday - Better finish your work today."/>
+    </bean>
+    <bean id="fridayMessage" class="com.jvosantos.examples.models.MessageValue" scope="prototype">
+        <constructor-arg value="Friday - Yay, Drink night"/>
+    </bean>
+    <bean id="saturdayMessage" class="com.jvosantos.examples.models.MessageValue" scope="prototype">
+        <constructor-arg value="Saturday - Try not to stay in the couch all day"/>
+    </bean>
+
+</beans>
+
+

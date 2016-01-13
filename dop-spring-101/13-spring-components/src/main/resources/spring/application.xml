@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.0.xsd
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <context:component-scan base-package="com.jvosantos.examples.services"/>
+
+    <bean id="sundayMessage" class="com.jvosantos.examples.models.Message" scope="prototype"
+          p:message="Sunday - crap, tomorrow you gotta work."/>
+    <bean id="mondayMessage" class="com.jvosantos.examples.models.Message" scope="prototype"
+          p:message="Monday - crap!"/>
+    <bean id="tuesdayMessage" class="com.jvosantos.examples.models.Message" scope="prototype"
+          p:message="Tuesday - ..."/>
+    <bean id="wednesdayMessage" class="com.jvosantos.examples.models.Message" scope="prototype"
+          p:message="Wednesday - Middle of the week, don't despair."/>
+    <bean id="thursdayMessage" class="com.jvosantos.examples.models.Message" scope="prototype"
+          p:message="Thursday - Better finish your work today."/>
+    <bean id="fridayMessage" class="com.jvosantos.examples.models.Message" scope="prototype"
+          p:message="Friday - Yay, Drink night"/>
+    <bean id="saturdayMessage" class="com.jvosantos.examples.models.Message" scope="prototype"
+          p:message="Saturday - Try not to stay in the couch all day"/>
+
+</beans>
