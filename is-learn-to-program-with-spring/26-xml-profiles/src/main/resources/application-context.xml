@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Using profiles requires one of the following: -->
+    <!-- vm option "-Dspring.profiles.active=<profile_name> -->
+    <!-- environment variable "something" set to profile_name -->
+    <!-- set a server context variable in the application server -->
+
+    <beans profile="DEV">
+        <bean id="beanA" class="com.jvosantos.examples.BeanA">
+            <property name="environment" value="Development Environment"/>
+        </bean>
+    </beans>
+
+    <beans profile="TEST">
+        <bean id="beanA" class="com.jvosantos.examples.BeanA">
+            <property name="environment" value="Test Environment"/>
+        </bean>
+    </beans>
+
+    <beans profile="PROD">
+        <bean id="beanA" class="com.jvosantos.examples.BeanA">
+            <property name="environment" value="Production Environment"/>
+        </bean>
+    </beans>
+
+</beans>
