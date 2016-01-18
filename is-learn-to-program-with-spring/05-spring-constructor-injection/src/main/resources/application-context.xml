@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+
+    <bean id="beanA1" class="com.jvosantos.examples.BeanA">
+        <!-- type to distinguish between overloaded constructors -->
+        <constructor-arg value="23" type="int"/>
+    </bean>
+
+    <bean id="beanA2" class="com.jvosantos.examples.BeanA">
+        <!-- index to specify order in constructor arguments -->
+        <constructor-arg index="1" value="John"/>
+        <constructor-arg index="0" value="Smith"/>
+    </bean>
+
+    <bean id="beanA3" class="com.jvosantos.examples.BeanA">
+        <constructor-arg>
+            <!-- inner bean cannot be used by other objects -->
+            <bean class="com.jvosantos.examples.BeanB"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="beanA4" class="com.jvosantos.examples.BeanA">
+        <!-- using parameter name needs debug flag on debug -->
+        <constructor-arg name="beanB" ref="beanB"/>
+    </bean>
+
+    <bean id="beanB" class="com.jvosantos.examples.BeanB"/>
+
+</beans>

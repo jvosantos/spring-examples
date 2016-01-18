@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd">
+
+    <bean id="beanA1" class="com.jvosantos.examples.BeanA">
+        <property name="list">
+            <list>
+                <value>Alice</value>
+                <value>Bob</value>
+                <value>Charlie</value>
+                <value>Daniel</value>
+            </list>
+        </property>
+        <property name="set">
+            <set>
+                <value>Alice</value>
+                <value>Bob</value>
+                <value>Charlie</value>
+                <value>Daniel</value>
+            </set>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="a" value="Alice"/>
+                <entry key="b" value="Bob"/>
+                <entry key="c" value="Charlie"/>
+                <entry key="d" value="Daniel"/>
+            </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="a">Alice</prop>
+                <prop key="b">Bob</prop>
+                <prop key="c">Charlie</prop>
+                <prop key="d">Daniel</prop>
+            </props>
+        </property>
+    </bean>
+
+    <util:set id="someSet" set-class="java.util.HashSet">
+        <value>Alice</value>
+        <value>Bob</value>
+        <value>Charlie</value>
+        <value>Daniel</value>
+    </util:set>
+
+    <util:map id="someMap" map-class="java.util.HashMap">
+        <entry key="a" value="Alice"/>
+        <entry key="b" value="Bob"/>
+        <entry key="c" value="Charlie"/>
+        <entry key="d" value="Daniel"/>
+    </util:map>
+
+    <util:list id="someList" list-class="java.util.ArrayList">
+        <value>Alice</value>
+        <value>Bob</value>
+        <value>Charlie</value>
+        <value>Daniel</value>
+    </util:list>
+
+    <util:properties id="someProperties">
+        <prop key="a">Alice</prop>
+        <prop key="b">Bob</prop>
+        <prop key="c">Charlie</prop>
+        <prop key="d">Daniel</prop>
+    </util:properties>
+
+    <bean id="beanA2" class="com.jvosantos.examples.BeanA">
+        <property name="list" ref="someList"/>
+        <property name="set" ref="someSet"/>
+        <property name="map" ref="someMap"/>
+        <property name="properties" ref="someProperties"/>
+    </bean>
+
+</beans>
